@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'index.dart';
-
-final nameProvider = Provider<String>((ref) => "Kapil RRRR Singh");
-final nameProvider1 = Provider<String>((ref) => "Kapil RR Singh");
+import 'views/index.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -17,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'River Pod',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

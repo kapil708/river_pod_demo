@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final nameProvider = Provider<String>((ref) => "Kapil R Singh");
 
-class ProviderWithStateFull extends ConsumerStatefulWidget {
-  const ProviderWithStateFull({Key? key}) : super(key: key);
+class ProviderSF extends ConsumerStatefulWidget {
+  const ProviderSF({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ProviderWithStateFull> createState() => _ProviderWithStateFullState();
+  ConsumerState<ProviderSF> createState() => _ProviderWithStateFullState();
 }
 
-class _ProviderWithStateFullState extends ConsumerState<ProviderWithStateFull> {
+class _ProviderWithStateFullState extends ConsumerState<ProviderSF> {
   @override
   void initState() {
     super.initState();

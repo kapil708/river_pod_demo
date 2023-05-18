@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'provider_with_statefull.dart';
-import 'provider_with_stateless.dart';
-import 'state_provider_with_stateless.dart';
+import '../state_notifier_provider/state_notifier_provider_sl.dart';
+import 'future_provider_sl.dart';
+import 'provider_sf.dart';
+import 'provider_sl.dart';
+import 'state_provider_sl.dart';
+import 'stream_provider_sl.dart';
 
 class Index extends StatelessWidget {
   const Index({Key? key}) : super(key: key);
@@ -19,7 +22,7 @@ class Index extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ProviderWithStateless()),
+                  MaterialPageRoute(builder: (context) => const ProviderSL()),
                 );
               },
             ),
@@ -28,7 +31,7 @@ class Index extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ProviderWithStateFull()),
+                  MaterialPageRoute(builder: (context) => const ProviderSF()),
                 );
               },
             ),
@@ -37,7 +40,7 @@ class Index extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const StateProviderWithStateless()),
+                  MaterialPageRoute(builder: (context) => const StateProviderSL()),
                 );
               },
             ),
@@ -46,7 +49,25 @@ class Index extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const StateProviderWithStateless()),
+                  MaterialPageRoute(builder: (context) => const StateNotifierProviderSL()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Future provider"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FutureProviderSL()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Stream provider"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const StreamProviderSL()),
                 );
               },
             ),

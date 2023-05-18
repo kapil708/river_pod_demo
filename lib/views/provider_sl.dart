@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final nameProvider = Provider<String>((ref) => "Kapil R Singh");
 
-class ProviderWithStateless extends ConsumerWidget {
-  const ProviderWithStateless({Key? key}) : super(key: key);
+class ProviderSL extends ConsumerWidget {
+  const ProviderSL({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

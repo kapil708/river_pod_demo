@@ -1,17 +1,29 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final counterProvider = StateProvider<int>((ref) => 0);
+import 'counter_demo.dart';
 
-class StateProviderWithStateless extends ConsumerWidget {
-  const StateProviderWithStateless({Key? key}) : super(key: key);
+final counterProvider = StateNotifierProvider.autoDispose<CounterDemo, int>((ref) {
+  final link = ref.keepAlive();
+  final timer = Timer(const Duration(seconds: 10), () {
+    link.close();
+  });
+
+  ref.onDispose(() => timer.cancel());
+  return CounterDemo();
+});
+
+class StateNotifierProviderSL extends ConsumerWidget {
+  const StateNotifierProviderSL({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final count = ref.watch(counterProvider);
 
     ref.listen(counterProvider, (previous, next) {
-      if (next == 5) {
+      if (next == 10) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("This value is $next")),
         );
@@ -19,7 +31,7 @@ class StateProviderWithStateless extends ConsumerWidget {
     });
 
     return Scaffold(
-      appBar: AppBar(title: const Text("State Provider With Stateless")),
+      appBar: AppBar(title: const Text("State Notifier Provider")),
       body: Container(
         padding: const EdgeInsets.all(16),
         width: MediaQuery.of(context).size.width,
@@ -36,11 +48,7 @@ class StateProviderWithStateless extends ConsumerWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    /// Way 1
-                    //ref.read(counterProvider.notifier).state++;
-
-                    /// Way 2
-                    ref.read(counterProvider.notifier).update((state) => state + 1);
+                    ref.read(counterProvider.notifier).increment();
                   },
                   child: const Icon(Icons.add),
                 ),
@@ -48,7 +56,7 @@ class StateProviderWithStateless extends ConsumerWidget {
                 ElevatedButton(
                   onPressed: () {
                     /// Way 1
-                    //ref.invalidate(counterProvider);
+                    // ref.invalidate(counterProvider);
 
                     /// Way 2
                     ref.refresh(counterProvider);
